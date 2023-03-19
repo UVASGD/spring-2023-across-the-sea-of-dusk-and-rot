@@ -12,12 +12,17 @@ public class Card : MonoBehaviour
     bool followMouse = false;
 
     public float lerpSpeed = 10.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         initialPosition = Camera.main.WorldToScreenPoint(transform.position);
     }
 
+    public Vector3 getCardDimensions(){
+        return GetComponentInChildren<BoxCollider>().bounds.size;
+    }
+    
     // Update is called once per frame
     void Update()
     {
