@@ -1,37 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public CardType Type;
-    public int level = 10;
-    public float baseAttack = 1;
-    public float baseDefense = 1;
-    public float baseRecover = 1;
+    public CardBase card;
+    public TMP_Text nameText;
+    public TMP_Text descriptionText;
+    public TMP_Text effectText;
+    public RotState state;
+    public Image artworkImage;
+    public CardType type;
 
-
-    public string Description()
-    {
-        if(Type == CardType.attack)
-        {
-            return "This is a level " + level + " attack Card";
-        }
-
-        if(Type == CardType.defense)
-        {
-            return "This is a level " + level + " defense Card";
-        }
-
-        return "";
+    private void Start() {
+        nameText.text = card.name;
+        descriptionText.text = card.description;
+        artworkImage.sprite = card.image;
+        effectText.text = card.getEffect(type);
+        state = card.state;
     }
-
-}
-
-public enum CardType
-{
-    attack,
-    defense,
-    recover,
-    special
 }
