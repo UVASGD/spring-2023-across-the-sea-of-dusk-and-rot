@@ -13,9 +13,16 @@ public class CardPage : MonoBehaviour
     public List<Card> PossessedCards;
     public int SinglePageCardCount = 6;
 
+    public List<Sprite> cardTextures;
 
-    public void Start()
+
+    public void Awake()
     {
+        for (int i = 0; i < 5; i++)
+        {
+            Sprite t = Resources.Load<Sprite>("UICards/card" + (i + 1).ToString());
+            cardTextures.Add(t);
+        }
         curIndex = 0;
         DisplayCanvas(curIndex);
     }
@@ -45,6 +52,7 @@ public class CardPage : MonoBehaviour
         leftButton = curCanvas.transform.Find("LeftButton");
         rightButton = curCanvas.transform.Find("RightButton");
         int maxIndex = (int)Mathf.Ceil((float)PossessedCards.Count / SinglePageCardCount) - 1;
+
 
         if (index == maxIndex)
         {

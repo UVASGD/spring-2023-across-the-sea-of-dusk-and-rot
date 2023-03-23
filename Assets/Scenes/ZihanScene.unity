@@ -1833,6 +1833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &257234810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,6 +1929,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257234807}
   m_CullTransparentMesh: 1
+--- !u!1 &292736125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292736127}
+  - component: {fileID: 292736126}
+  m_Layer: 0
+  m_Name: Card (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &292736126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292736125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
+  level: 8
+  baseAttack: 1
+  baseDefense: 1
+  baseRecover: 1
+--- !u!4 &292736127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292736125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 432, y: 429, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &315855414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,6 +2402,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415016989}
   m_CullTransparentMesh: 1
+--- !u!1 &420756451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420756453}
+  - component: {fileID: 420756452}
+  m_Layer: 0
+  m_Name: Card (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &420756452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420756451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 3
+  level: 8
+  baseAttack: 1
+  baseDefense: 1
+  baseRecover: 1
+--- !u!4 &420756453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420756451}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 432, y: 429, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &434760170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,6 +2553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &542934127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3084,6 +3186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &656854320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3538,6 +3642,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!1 &754848308
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,6 +3908,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &801770211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4352,7 +4460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &909810840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4468,6 +4576,8 @@ MonoBehaviour:
   PossessedCards:
   - {fileID: 1469239469}
   SinglePageCardCount: 6
+  parentCardpage: {fileID: 0}
+  cardTextures: []
 --- !u!1 &912269799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4478,6 +4588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 912269801}
   - component: {fileID: 912269800}
+  - component: {fileID: 912269802}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -4562,6 +4673,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &912269802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912269799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &939477590
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,6 +4881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1074499546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4906,13 +5039,14 @@ MonoBehaviour:
   - {fileID: 886691194}
   - {fileID: 434760171}
   - {fileID: 601455204}
+  - {fileID: 292736126}
   - {fileID: 601455204}
+  - {fileID: 292736126}
   - {fileID: 601455204}
-  - {fileID: 601455204}
-  - {fileID: 601455204}
-  - {fileID: 601455204}
-  - {fileID: 601455204}
+  - {fileID: 420756452}
+  - {fileID: 420756452}
   SinglePageCardCount: 6
+  cardTextures: []
 --- !u!1 &1126795632
 GameObject:
   m_ObjectHideFlags: 0
@@ -5044,6 +5178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1127047613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5191,6 +5327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1130769285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5473,6 +5611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1250512042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5620,6 +5760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1277704631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6068,7 +6210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1435962436
 Canvas:
   m_ObjectHideFlags: 0
@@ -6113,6 +6255,8 @@ MonoBehaviour:
   PossessedCards:
   - {fileID: 1469239469}
   SinglePageCardCount: 6
+  parentCardpage: {fileID: 0}
+  cardTextures: []
 --- !u!114 &1435962438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6759,6 +6903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1596227190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6984,6 +7130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1622907478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7612,6 +7760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1752127693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8164,6 +8314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1786084685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8311,6 +8463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1835774823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8458,6 +8612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1837214464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8976,7 +9132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1906966056
 Canvas:
   m_ObjectHideFlags: 0
@@ -9021,6 +9177,8 @@ MonoBehaviour:
   PossessedCards:
   - {fileID: 1469239469}
   SinglePageCardCount: 6
+  parentCardpage: {fileID: 0}
+  cardTextures: []
 --- !u!114 &1906966058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9145,6 +9303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &1972038211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9299,7 +9459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5839b64d8b7564693b8cfc9b54602616, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9370,6 +9530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  colorOnSelected: {r: 0.21176471, g: 0.8784314, b: 0.36078432, a: 0.4392157}
 --- !u!114 &2021279917
 MonoBehaviour:
   m_ObjectHideFlags: 0
