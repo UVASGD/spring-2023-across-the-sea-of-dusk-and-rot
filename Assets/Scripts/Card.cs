@@ -4,34 +4,76 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public CardType Type;
-    public int level = 10;
-    public float baseAttack = 1;
-    public float baseDefense = 1;
-    public float baseRecover = 1;
+    // cardBase stores basic information
+    public CardBase cardBase;
+    /*
+    public string cardName;
+    public int maxLevel = 5;
+    public Sprite image;
+    public CardType type = CardType.attack;
+    public int baseAttack = 0;
+    public int baseDefense = 0;
+    public int baseHeal = 0;
+    public int degradePerUse = 0;
+    public Special special = Special.normal;
+     */
+    public int level;
 
+    private void Start()
+    {
+        level = cardBase.initialLevel;
+    }
+
+    public int getAttack()
+    {
+        return cardBase.baseAttack * level;
+    }
+
+    public int getDefense()
+    {
+        return cardBase.baseDefense * level;
+    }
+
+    public int getHeal()
+    {
+        return cardBase.baseHeal * level;
+    }
+
+    public int degrade(int g)
+    {
+        level = Mathf.Max(0, level - g);
+        return level;
+    }
+
+    public int upgrade(int g)
+    {
+        level = Mathf.Min(cardBase.maxLevel, level + g);
+        return level;
+    }
 
     public string Description()
     {
-        if(Type == CardType.attack)
+        if (cardBase.special != Special.normal)
         {
-            return "This is a level " + level + " attack Card";
+            // To be changed
+            return "SPECIAL!!!!!";
         }
 
-        if(Type == CardType.defense)
+        string description = "";
+        if(getAttack() > 0)
         {
-            return "This is a level " + level + " defense Card";
+            description += "Deal " + getAttack() + " damage\n";
         }
-
-        return "";
+        if(getDefense() > 0)
+        {
+            description += "Generate " + getDefense() + " defense\n";
+        }
+        if(getHeal() > 0)
+        {
+            description += "Heal " + getHeal() + " HP";
+        }
+        return description;
     }
 
 }
 
-public enum CardType
-{
-    attack,
-    defense,
-    recover,
-    special
-}
