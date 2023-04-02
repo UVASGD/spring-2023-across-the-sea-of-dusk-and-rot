@@ -46,11 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d18f1ff67fb94b4eb3d9567497e45a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 3392467039990040023, guid: 49d10078611b795478dae2a3fe1757ab, type: 3}
-  - {fileID: 3392467039990040023, guid: 49d10078611b795478dae2a3fe1757ab, type: 3}
-  - {fileID: 3392467039990040023, guid: 49d10078611b795478dae2a3fe1757ab, type: 3}
-  - {fileID: 3392467039990040023, guid: 49d10078611b795478dae2a3fe1757ab, type: 3}
+  cards: []
 --- !u!1 &5451499608506188719
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +204,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1910538308373649012, guid: 49d10078611b795478dae2a3fe1757ab, type: 3}
       propertyPath: m_Name
-      value: Card
+      value: Card_Placeholder
       objectReference: {fileID: 0}
     - target: {fileID: 3048309629181963648, guid: 49d10078611b795478dae2a3fe1757ab, type: 3}
       propertyPath: m_RootOrder

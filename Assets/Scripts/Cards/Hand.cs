@@ -7,37 +7,93 @@ public class Hand : MonoBehaviour
 
 
     [SerializeField]
-    List<Card> cards;
+    private List<GameObject> cards;
 
     private List<Vector3> circlePoints;
     private Vector3 cardDimensions;
     private float circleRadius;
+    private float circleCenter;
+    private float cardOverlapAmount = 0.1f;
+
+    private bool cardCountChanged = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        circlePoints = GetComponentInChildren<Circle>().getCirclePoints();
+        // circlePoints = GetComponentInChildren<Circle>().getCirclePoints();
         circleRadius = GetComponentInChildren<Circle>().getCircleRadius();
-
+        circleCenter = GetComponentInChildren<Circle>().getCircleCenter();
         //prefab includes a card object; only purpose is to get dimensions
         cardDimensions = GetComponentInChildren<Card>().getCardDimensions();
-        transform.Find("Card").gameObject.SetActive(false); //set gameobject to false afterwards to avoid disrupting other scripts
+        transform.Find("Card_Placeholder").gameObject.SetActive(false); //set gameobject to false afterwards to avoid disrupting other scripts
+
+        //add to set of cards in hand the children that are cards
+        foreach(Transform child in this.transform){
+            if(child.GetComponent<Card>() && child.gameObject.activeInHierarchy){
+                cards.Add(child.gameObject);
+            }
+        }
+        print(cards.Count);
         print(cardDimensions);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(cardCountChanged){
+            StartCoroutine(RepositionCardsInHand());
+        }
     }
 
-    public void AddCard(Card card){
+    public void AddCard(GameObject card){
+        if(card.GetComponent<Card>() == null) return;
         cards.Add(card);
+        cardCountChanged = true;
     }
 
 
     IEnumerator RepositionCardsInHand(){
-        
+        print("repositioning cards");
+        int numCards = cards.Count;
+        float cardStartingPosX = 0;
+        Vector3 screenCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, 0));
+
+        // print("world center point: ");
+        // print(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, 0)));
+        if(numCards % 2 == 0){
+            
+        }
+        else{
+            Debug.Log("center X: " + screenCenter.x);
+            Debug.Log("card width: " + cardDimensions.x);
+            if(numCards == 1){
+                cardStartingPosX = 0.0f;
+            }
+            else{
+                cardStartingPosX = screenCenter.x -(cards.Count/2 * (float)cardDimensions.x);
+                print(cardStartingPosX);
+            }
+        }
+        // Debug.Log("circle radius: " + circleRadius);
+        // Debug.Log("circle center Y: " + circleCenter);
+        for(int i = 0; i < cards.Count; i++){
+                float angle = Mathf.Atan2(-circleCenter, cardStartingPosX);
+                // print("angle: " + angle);
+                float temp = Mathf.Sin(angle);
+                Debug.Log("starting X: " + cardStartingPosX);
+                Debug.Log("angle: " + angle*Mathf.Rad2Deg);
+                Debug.Log("sin of angle: " + temp);
+
+                float newY = Mathf.Sin(angle) * circleRadius + circleCenter;
+                // Debug.Log("new X: " + cardStartingPosX + (float)(cardDimensions.x)/2);
+                // Debug.Log("new Y: " + newY);
+                // print(cardStartingPosX);
+                // print(newY);
+                cards[i].GetComponent<Card>().SetInitialPosition(new Vector3(cardStartingPosX, newY, cards[i].transform.position.z));
+                cardStartingPosX += cardDimensions.x;
+            }
+
+        cardCountChanged = false;
         yield return null;
     }
 }

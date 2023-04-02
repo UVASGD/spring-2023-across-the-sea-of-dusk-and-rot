@@ -43,8 +43,15 @@ public class Circle : MonoBehaviour
         return circlePoints;
     }
 
+    public float getCircleCenter(){
+        // return Camera.main.ScreenToWorldPoint(new Vector3(0, -yOffset, 0)).y;
+        return -yOffset;
+    }
+
     public float getCircleRadius(){
+        // return Camera.main.ScreenToWorldPoint(new Vector3(radius, 0, 0)).x;
         return radius;
+
     }
 
     // Update is called once per frame
