@@ -16,7 +16,7 @@ public class CardPage : MonoBehaviour
     public List<Sprite> cardTextures;
 
 
-    public void Awake()
+    public void Start()
     {
         for (int i = 0; i < 5; i++)
         {

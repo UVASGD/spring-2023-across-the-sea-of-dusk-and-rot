@@ -1760,11 +1760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  cardBase: {fileID: 11400000, guid: b311f3506852640fba6e810267984bf8, type: 2}
   level: 10
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &238116538
 Transform:
   m_ObjectHideFlags: 0
@@ -1958,11 +1955,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  cardBase: {fileID: 11400000, guid: bad80752beb7441f199f6bfb270641e5, type: 2}
   level: 8
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &292736127
 Transform:
   m_ObjectHideFlags: 0
@@ -2431,11 +2425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  cardBase: {fileID: 11400000, guid: bad80752beb7441f199f6bfb270641e5, type: 2}
   level: 8
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &420756453
 Transform:
   m_ObjectHideFlags: 0
@@ -2480,11 +2471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  cardBase: {fileID: 11400000, guid: d1d58b2cdc5894696a132734f1247cbc, type: 2}
   level: 0
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &434760172
 Transform:
   m_ObjectHideFlags: 0
@@ -3035,11 +3023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  cardBase: {fileID: 11400000, guid: d1d58b2cdc5894696a132734f1247cbc, type: 2}
   level: 8
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &601455205
 Transform:
   m_ObjectHideFlags: 0
@@ -4033,11 +4018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  cardBase: {fileID: 11400000, guid: 914f7a6bc315c4528ba3ebe1ec85f9f4, type: 2}
   level: 0
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &807609576
 Transform:
   m_ObjectHideFlags: 0
@@ -4421,11 +4403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  cardBase: {fileID: 11400000, guid: 914f7a6bc315c4528ba3ebe1ec85f9f4, type: 2}
   level: 5
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &886691195
 Transform:
   m_ObjectHideFlags: 0
@@ -6435,11 +6414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  cardBase: {fileID: 11400000, guid: b311f3506852640fba6e810267984bf8, type: 2}
   level: 0
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &1469239470
 Transform:
   m_ObjectHideFlags: 0
@@ -6484,11 +6460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76518bddff0438bbdf740af9980723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  cardBase: {fileID: 11400000, guid: b311f3506852640fba6e810267984bf8, type: 2}
   level: 10
-  baseAttack: 1
-  baseDefense: 1
-  baseRecover: 1
 --- !u!4 &1480674021
 Transform:
   m_ObjectHideFlags: 0

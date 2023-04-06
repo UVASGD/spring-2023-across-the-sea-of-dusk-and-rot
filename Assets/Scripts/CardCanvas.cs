@@ -44,7 +44,7 @@ public class CardCanvas : MonoBehaviour
             Card card = PossessedCards[i + canvasIndex * SinglePageCardCount];
 
             //set texture of the cardImage
-            int textureIndex = textureMapping[card.Type];
+            int textureIndex = textureMapping[card.cardBase.type];
             Sprite t = cardTextures[textureIndex];
             image.sprite = t;
 
