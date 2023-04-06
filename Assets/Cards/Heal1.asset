@@ -16,7 +16,7 @@ MonoBehaviour:
   maxLevel: 5
   initialLevel: 5
   image: {fileID: 0}
-  type: 0
+  type: 2
   baseAttack: 0
   baseDefense: 0
   baseHeal: 1

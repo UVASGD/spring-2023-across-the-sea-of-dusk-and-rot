@@ -7,6 +7,7 @@ public class Card : MonoBehaviour
     // cardBase stores basic information
     public CardBase cardBase;
     /*
+     * CardBase attributes
     public string cardName;
     public int maxLevel = 5;
     public Sprite image;
@@ -19,7 +20,7 @@ public class Card : MonoBehaviour
      */
     public int level;
 
-    private void Start()
+    private void Awake()
     {
         level = cardBase.initialLevel;
     }
@@ -53,6 +54,10 @@ public class Card : MonoBehaviour
 
     public string Description()
     {
+        if (level == 0)
+        {
+            return "This card is rotten.";
+        }
         if (cardBase.special != Special.normal)
         {
             // To be changed
