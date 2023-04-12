@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e193041d145864d8f33418fca7a99f, type: 3}
-  m_Name: TestCard
+  m_Script: {fileID: 11500000, guid: 44e661418f2dc4b42a9b737ac41f4609, type: 3}
+  m_Name: Test Card
   m_EditorClassIdentifier: 
-  name: Test
-  description: This is a Test
-  image: {fileID: 21300000, guid: 3494dc956dfd7174abc07060940a2848, type: 3}
-  type: 0
-  state: 0
-  attack: 10
+  name: Test Card
+  description: This is A Test
+  artwork: {fileID: 2800000, guid: 11b261f062c2cf742acfc799ee13700f, type: 3}
+  attack: 5
   defense: 0
   heal: 0
-  special: 0
+  type: 0
