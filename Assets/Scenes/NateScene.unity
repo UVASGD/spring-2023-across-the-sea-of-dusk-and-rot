@@ -154,6 +154,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 6144840912311819588, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
+      propertyPath: rot1
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a3e2217203f8ab439f5b2d1af581c1b, type: 2}
+    - target: {fileID: 6144840912311819588, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
+      propertyPath: rot2
+      value: 
+      objectReference: {fileID: 2100000, guid: 23968fd097009344c91d445cd550ddb0, type: 2}
+    - target: {fileID: 6144840912311819588, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
+      propertyPath: rot3
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cbf997ed27346f40b3bab988048fedb, type: 2}
+    - target: {fileID: 6144840912311819588, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
+      propertyPath: rot4
+      value: 
+      objectReference: {fileID: 2100000, guid: 31d1090518c68b048a4a1eb655cbec6d, type: 2}
+    - target: {fileID: 6144840912311819588, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
+      propertyPath: rot5
+      value: 
+      objectReference: {fileID: 2100000, guid: aa3765e95e6f1534c875035995963290, type: 2}
     - target: {fileID: 6144840912311819589, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -198,6 +218,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6144840912311819591, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a3e2217203f8ab439f5b2d1af581c1b, type: 2}
     - target: {fileID: 6144840912324650179, guid: 30222358e1234044ba95c5baf6beef5f, type: 3}
       propertyPath: m_Layer
       value: 6

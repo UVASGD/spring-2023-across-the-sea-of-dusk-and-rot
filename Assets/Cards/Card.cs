@@ -16,10 +16,12 @@ public class Card : ScriptableObject
     public int defense;
     public int heal;
     public Type type;
-    private int rot;
+    private float rot;
 
     private int getAttack(){
-        return attack;
+        Debug.Log("Rot: "+rot);
+        Debug.Log("Rot modifier "+1/rot);
+        return (int)Mathf.Ceil(attack*(1/rot));
     }
     private int getDefense(){
         return defense;
@@ -27,10 +29,14 @@ public class Card : ScriptableObject
     private int getHeal(){
         return heal;
     }
-    public int getRotLevel(){
+    public float getRotLevel(){
         return rot;
     }
-    public void setRotLevel(int newRotLevel){
+    public void setRotLevel(float newRotLevel){
+        //This ensures a card will always do at least 1 damage
+        if(newRotLevel>=attack){
+            newRotLevel = attack;
+        }
         rot = newRotLevel;
     }
 

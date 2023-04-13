@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public Camera camera;
     private Card card;
+    private CardDisplay display;
     private Enemy enemy;
+    private Dictionary<Card,int> cardRotLevels;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +23,16 @@ public class GameManager : MonoBehaviour
             if(Physics.Raycast(ray,out RaycastHit hitInfo)){
                 if(hitInfo.collider.gameObject.tag=="Card"){
                     card = hitInfo.collider.gameObject.GetComponent<CardDisplay>().card;
-                    Debug.Log("Selected "+card.name);
+                    display = hitInfo.collider.gameObject.GetComponent<CardDisplay>();
                 }
                 if(hitInfo.collider.gameObject.tag=="Enemy"){
                     enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-                    Debug.Log("Selected "+enemy.name);
-                    enemy.DealDamage(card.attack);
+                    enemy.DealDamage(card.getEffect(card.type));
                     Debug.Log(enemy.currHealth);
+                    card.setRotLevel(card.getRotLevel()+1);
+                    display.updateRotTexture();
+                    Debug.Log("Rot at level "+card.getRotLevel()+", attack now at "+card.getEffect(card.type));
                     card = null;
-                    Debug.Log("Card now null"+card);
                 }
             }
         }
