@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Card : MonoBehaviour
+public class CardMechanics : MonoBehaviour
 {
     public CardData card;
     public TextMeshProUGUI nameText;
@@ -81,7 +81,7 @@ public class Card : MonoBehaviour
         if(!Input.GetMouseButton(0)){
             //temp play logic
             float mousePos = Input.mousePosition.y;
-            print("mouse pos: " + mousePos);
+            // print("mouse pos: " + mousePos);
             if(mousePos > 400 && selectedCard != null){
                 removeFromHand = true;
             }
@@ -99,12 +99,15 @@ public class Card : MonoBehaviour
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if(Physics.Raycast(ray, out hit))
                 {
-                    // print(hit.transform.parent.gameObject);
-                    // print(this.gameObject);
-                    // print("------");
+                    print("------");
+                    print(hit.transform.parent.gameObject);
+                    print(this.gameObject);
+                    print("------");
 
                     // print(hit.collider.name);
-                    if(hit.transform.parent.gameObject == this.gameObject && selectedCard == null){
+                    print("trying to access hit card");
+                    print(hit.transform.parent.gameObject);
+                    if(hit.transform.gameObject == this.gameObject && selectedCard == null){
                         print("selecting card, got gameobject");
                         selectedCard = this.gameObject;
                     }
@@ -114,10 +117,11 @@ public class Card : MonoBehaviour
         }
 
         if(followMouse &&  selectedCard == this.gameObject){
+            print("trying to follow");
             float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
-            cardTransform.position = Vector3.Lerp(cardTransform.position, targetPosition, lerpSpeed*Time.deltaTime);
-            cardTransform.rotation = Quaternion.Lerp(cardTransform.rotation, Quaternion.Euler(new Vector3(0, 0, 0)), lerpSpeedRotate*Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed*Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 180, 0)), lerpSpeedRotate*Time.deltaTime);
         }
         else{
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(initialPosition);
