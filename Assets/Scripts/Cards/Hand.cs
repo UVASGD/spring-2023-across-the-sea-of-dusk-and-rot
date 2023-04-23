@@ -24,14 +24,15 @@ public class Hand : MonoBehaviour
         // circlePoints = GetComponentInChildren<Circle>().getCirclePoints();
         circleRadius = GetComponentInChildren<Circle>().getCircleRadius();
         circleCenter = GetComponentInChildren<Circle>().getCircleCenter();
+        // print("circle center: " + circleCenter);
         //prefab includes a card object; only purpose is to get dimensions
-        cardDimensions = GetComponentInChildren<Card>().getCardDimensions();
+        cardDimensions = GetComponentInChildren<CardMechanics>().getCardDimensions();
         transform.Find("Card_Placeholder").gameObject.SetActive(false); //set gameobject to false afterwards to avoid disrupting other scripts
 
         //add to set of cards in hand the children that are cards
         int cardCount = 0;
         foreach(Transform child in this.transform){
-            if(child.GetComponent<Card>() && child.gameObject.activeInHierarchy){
+            if(child.GetComponent<CardMechanics>() && child.gameObject.activeInHierarchy){
                 cards.Add(child.gameObject);
                 cardCount += 1;
             }
@@ -53,7 +54,7 @@ public class Hand : MonoBehaviour
     private void CheckCardsInHand(){
         int cardCount = 0;
         foreach(Transform child in this.transform){
-            if(child.GetComponent<Card>() && child.gameObject.activeInHierarchy){
+            if(child.GetComponent<CardMechanics>() && child.gameObject.activeInHierarchy){
                 cardCount += 1;
             }
         }
@@ -66,17 +67,17 @@ public class Hand : MonoBehaviour
     }
 
     public void AddCard(GameObject card){
-        if(card.GetComponent<Card>() == null) return;
+        if(card.GetComponent<CardMechanics>() == null) return;
         cards.Add(card);
         update = true;
     }
     public void RemoveCard(GameObject card){
-        if(card.GetComponent<Card>() == null)return;
+        if(card.GetComponent<CardMechanics>() == null)return;
         cards.Remove(card);
     }
 
     IEnumerator RepositionCardsInHand(){
-        print("repositioning cards");
+        // print("repositioning cards");
         int numCards = cards.Count;
         float cardStartingPosX = 0;
         Vector3 screenCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, 0));
@@ -92,8 +93,8 @@ public class Hand : MonoBehaviour
             }
         }
         else{
-            Debug.Log("center X: " + screenCenter.x);
-            Debug.Log("card width: " + cardDimensions.x);
+            // Debug.Log("center X: " + screenCenter.x);
+            // Debug.Log("card width: " + cardDimensions.x);
             if(numCards == 1){
                 cardStartingPosX = 0.0f;
             }
@@ -108,17 +109,17 @@ public class Hand : MonoBehaviour
             float angle = Mathf.Atan2(-circleCenter, cardStartingPosX);
             // print("angle: " + angle);
             float temp = Mathf.Sin(angle);
-            Debug.Log("starting X: " + cardStartingPosX);
-            Debug.Log("angle: " + angle*Mathf.Rad2Deg);
-            Debug.Log("sin of angle: " + temp);
+            // Debug.Log("starting X: " + cardStartingPosX);
+            // Debug.Log("angle: " + angle*Mathf.Rad2Deg);
+            // Debug.Log("sin of angle: " + temp);
 
             float newY = Mathf.Sin(angle) * circleRadius + circleCenter;
             // Debug.Log("new X: " + cardStartingPosX + (float)(cardDimensions.x)/2);
             // Debug.Log("new Y: " + newY);
             // print(cardStartingPosX);
             // print(newY);
-            cards[i].GetComponent<Card>().SetInitialPosition(new Vector3(cardStartingPosX, newY, cards[i].transform.position.z));
-            cards[i].GetComponent<Card>().SetRotation(new Vector3(0, 0, angle*Mathf.Rad2Deg - 90));
+            cards[i].GetComponent<CardMechanics>().SetInitialPosition(new Vector3(cardStartingPosX, newY, cards[i].transform.position.z));
+            cards[i].GetComponent<CardMechanics>().SetRotation(new Vector3(0, 180, angle*Mathf.Rad2Deg - 90));
             cardStartingPosX += cardDimensions.x;
         }
         update = false;
