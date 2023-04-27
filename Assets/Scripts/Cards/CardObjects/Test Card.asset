@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b332a421a94444c692605b09493bc0c, type: 3}
-  m_Name: Attack1
+  m_Script: {fileID: 11500000, guid: 4096c94fe284f43419a5519ecb238772, type: 3}
+  m_Name: Test Card
   m_EditorClassIdentifier: 
-  cardName: 
-  maxLevel: 5
-  initialLevel: 5
-  image: {fileID: 0}
+  name: Test
+  description: This is a Test
+  artwork: {fileID: 2800000, guid: 11b261f062c2cf742acfc799ee13700f, type: 3}
+  attack: 5
+  defense: 0
+  heal: 0
   type: 0
-  baseAttack: 1
-  baseDefense: 1
-  baseHeal: 0
-  degradePerUse: 0
-  special: 0

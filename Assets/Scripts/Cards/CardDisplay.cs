@@ -73,9 +73,5 @@ public class CardDisplay : MonoBehaviour
                 break;
             
         }
-        // Vector3 scale = meshRenderer.material.mainTextureScale;
-        // scale.x = -scale.x;
-        // scale.y = -scale.y;
-        // meshRenderer.material.mainTextureScale = scale;
     }
 }
