@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Camera camera;
-    private Card card;
-    private CardDisplay display;
+    private CardData card;
+    private Card display;
     private Enemy enemy;
     private Dictionary<Card,int> cardRotLevels;
     // Start is called before the first frame update
@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray,out RaycastHit hitInfo)){
                 if(hitInfo.collider.gameObject.tag=="Card"){
-                    card = hitInfo.collider.gameObject.GetComponent<CardDisplay>().card;
-                    display = hitInfo.collider.gameObject.GetComponent<CardDisplay>();
+                    card = hitInfo.collider.gameObject.GetComponent<Card>().card;
+                    display = hitInfo.collider.gameObject.GetComponent<Card>();
                 }
                 if(hitInfo.collider.gameObject.tag=="Enemy"){
                     enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();

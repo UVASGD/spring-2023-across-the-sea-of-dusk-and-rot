@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Cards")]
-public class Card : ScriptableObject
+public class CardData : ScriptableObject
 {
     public string name;
     public string description;

@@ -1,9 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Card : MonoBehaviour
 {
+    public CardData card;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI descriptionText;
+    public RawImage artworkimage;
+    public TextMeshProUGUI effectText;
+    private Renderer renderer;
+    private Transform cardTransform;
+    private Vector3 scalechange;
+    private Color ogColor;
+    private MeshRenderer meshRenderer;
+
+    //Rot Textures
+    public Material rot1;
+    public Material rot2;
+    public Material rot3;
+    public Material rot4;
+    public Material rot5;
 
     Ray ray;
     RaycastHit hit;
@@ -23,6 +42,16 @@ public class Card : MonoBehaviour
     void Start()
     {
         initialPosition = Camera.main.WorldToScreenPoint(transform.position);
+        nameText.text = card.name;
+        descriptionText.text = card.description;
+        effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
+        artworkimage.texture = card.artwork;
+        renderer = GetComponent<Renderer>();
+        cardTransform = GetComponent<Transform>();
+        scalechange = new Vector3(0.2f,0.2f,0.0f);
+        ogColor = renderer.material.color;
+        meshRenderer = GetComponent<MeshRenderer>();
+        card.setRotLevel(1);
     }
 
     public void SetInitialPosition(Vector3 newPosition){
@@ -47,6 +76,8 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
+
         if(!Input.GetMouseButton(0)){
             //temp play logic
             float mousePos = Input.mousePosition.y;
@@ -85,14 +116,44 @@ public class Card : MonoBehaviour
         if(followMouse &&  selectedCard == this.gameObject){
             float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
-            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed*Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, 0)), lerpSpeedRotate*Time.deltaTime);
+            cardTransform.position = Vector3.Lerp(cardTransform.position, targetPosition, lerpSpeed*Time.deltaTime);
+            cardTransform.rotation = Quaternion.Lerp(cardTransform.rotation, Quaternion.Euler(new Vector3(0, 0, 0)), lerpSpeedRotate*Time.deltaTime);
         }
         else{
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(initialPosition);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed*Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotation), lerpSpeedRotate*Time.deltaTime);
+            cardTransform.position = Vector3.Lerp(cardTransform.position, targetPosition, lerpSpeed*Time.deltaTime);
+            cardTransform.rotation = Quaternion.Lerp(cardTransform.rotation, Quaternion.Euler(rotation), lerpSpeedRotate*Time.deltaTime);
 
         }
     } 
+    private void OnMouseEnter() {
+        renderer.material.color = Color.yellow;
+        cardTransform.localScale += scalechange;
+    }
+    private void OnMouseExit() {
+        renderer.material.color = ogColor;
+        cardTransform.localScale -= scalechange;
+    }
+
+    public void updateRotTexture(){
+        int rot = (int)card.getRotLevel();
+        switch(rot){
+            case 2:
+                meshRenderer.material = rot2;
+                break;
+            case 3:
+                meshRenderer.material = rot3;
+                break;
+            case 4:
+                meshRenderer.material = rot4;
+                break;
+            case 5:
+                meshRenderer.material = rot5;
+                break;
+            default:
+                meshRenderer.material = rot1;
+                break;
+            
+        }
+    }
 }

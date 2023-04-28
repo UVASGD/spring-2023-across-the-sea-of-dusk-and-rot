@@ -21,7 +21,7 @@ public class Hand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // circlePoints = GetComponentInChildren<Circle>().getCirclePoints();
+        circlePoints = GetComponentInChildren<Circle>().getCirclePoints();
         circleRadius = GetComponentInChildren<Circle>().getCircleRadius();
         circleCenter = GetComponentInChildren<Circle>().getCircleCenter();
         //prefab includes a card object; only purpose is to get dimensions
