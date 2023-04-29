@@ -10,13 +10,16 @@ public class GameManager : MonoBehaviour
     private Enemy enemy;
     private Dictionary<Card,int> cardRotLevels;
     private bool playersTurn;
+    private GameObject[] tempArray;
     private PlayerBoat player;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].GetComponent<Enemy>();
         playersTurn = true;
-        player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerBoat>();
+        tempArray = GameObject.FindGameObjectsWithTag("Player");
+        player = tempArray[0].GetComponent<PlayerBoat>();
+        print(player);
     }
 
     // Update is called once per frame

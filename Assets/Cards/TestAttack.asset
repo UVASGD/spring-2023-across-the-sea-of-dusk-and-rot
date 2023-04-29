@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Attack Card
   description: Testing Attack
-  artwork: {fileID: 0}
+  artwork: {fileID: 2800000, guid: 11b261f062c2cf742acfc799ee13700f, type: 3}
   attack: 10
   defense: 0
   heal: 0
