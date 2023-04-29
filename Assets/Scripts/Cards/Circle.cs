@@ -26,12 +26,12 @@ public class Circle : MonoBehaviour
     void createCirclePoints(){
         theta = 0f;
         numPoints = (int)((1f / thetaScale) + 1f);
-        lineDrawer.positionCount = numPoints;
+        // lineDrawer.positionCount = numPoints;
         for (int i = 0; i < numPoints; i++) {
             theta += (2.0f * Mathf.PI * thetaScale);
             float x = radius * Mathf.Cos(theta);
             float y = radius * Mathf.Sin(theta) - yOffset;
-            lineDrawer.SetPosition(i, new Vector3(x, y, 0));
+            // lineDrawer.SetPosition(i, new Vector3(x, y, 0));
 
             Vector3 point = new Vector3(x, y, theta);
             circlePoints.Add(point);

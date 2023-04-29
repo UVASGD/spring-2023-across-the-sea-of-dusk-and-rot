@@ -26,6 +26,7 @@ public class Hand : MonoBehaviour
         //prefab includes a card object; only purpose is to get dimensions
         cardDimensions = GetComponentInChildren<Card>().getCardDimensions();
         transform.Find("Card_Placeholder").gameObject.SetActive(false); //set gameobject to false afterwards to avoid disrupting other scripts
+        transform.Find("Circle").gameObject.SetActive(false);
 
         //add to set of cards in hand the children that are cards
         int cardCount = 0;
@@ -48,6 +49,9 @@ public class Hand : MonoBehaviour
         if(update){
             StartCoroutine(RepositionCardsInHand());
         }
+    }
+    public int GetNumberOfCardsInHand(){
+        return cards.Count;
     }
     public void ForceUpdate(){
         update = true;

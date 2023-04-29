@@ -16,7 +16,7 @@ public class CardData : ScriptableObject
     public int defense;
     public int heal;
     public Type type;
-    private float rot;
+    private int rot;
 
     private int getAttack(){
         // Debug.Log("Rot: "+rot);
@@ -31,10 +31,10 @@ public class CardData : ScriptableObject
     private int getHeal(){
         return heal;
     }
-    public float getRotLevel(){
+    public int getRotLevel(){
         return rot;
     }
-    public void setRotLevel(float newRotLevel){
+    public void setRotLevel(int newRotLevel){
         //This ensures a card will always do at least 1 damage
         if(newRotLevel>=attack){
             newRotLevel = attack;
