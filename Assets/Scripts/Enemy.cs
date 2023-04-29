@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public int currHealth;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
+    public int attack;
 
     // Start is called before the first frame update
     void Start()

@@ -24,10 +24,10 @@ public class CardData : ScriptableObject
         return (int)Mathf.Ceil(attack*(1/rot));
     }
     private int getDefense(){
-        return defense;
+        return (int)Mathf.Ceil(defense*(1/rot));
     }
     private int getHeal(){
-        return heal;
+        return (int)Mathf.Ceil(heal*(1/rot));
     }
     public float getRotLevel(){
         return rot;

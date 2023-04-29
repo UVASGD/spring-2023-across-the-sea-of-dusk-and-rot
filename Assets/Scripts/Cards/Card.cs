@@ -49,7 +49,7 @@ public class Card : MonoBehaviour
         cardTransform = GetComponent<Transform>();
         scalechange = new Vector3(0.2f,0.2f,0.0f);
         ogColor = GetComponent<Renderer>().material.color;
-        meshRenderer = GetComponent<Renderer>();
+        meshRenderer = cardTransform.GetChild(0).GetComponent<Renderer>();
         card.setRotLevel(1);
         gm = FindObjectOfType<GameManager>();
     }
@@ -58,7 +58,8 @@ public class Card : MonoBehaviour
         initialPosition = Camera.main.WorldToScreenPoint(newPosition);
     }
     public Vector3 getCardDimensions(){
-        return GetComponentInChildren<BoxCollider>().bounds.size;
+        GameObject child = transform.GetChild(0).gameObject;
+        return child.GetComponent<BoxCollider>().bounds.size;
     }
     public void SetRotation(Vector3 newRotation){
         rotation = newRotation;
@@ -71,7 +72,22 @@ public class Card : MonoBehaviour
     private void PlayCard(){
         //play card
         print("Sending Card Data");
-        gm.Attack(card.getEffect(card.type));
+        switch (card.type)
+        {
+            case Type.DEFENSE:
+                print("Defense "+card.type);
+                gm.Defend(card.getEffect(card.type));
+                break;
+            case Type.HEAL:
+                print("Heal "+card.type);
+                gm.Heal(card.getEffect(card.type));
+                break;
+            default:
+                print("Attack "+card.type);
+                gm.Attack(card.getEffect(card.type));
+                break;
+        }
+        
         card.setRotLevel(card.getRotLevel()+1);
         updateRotTexture();
         
@@ -110,6 +126,7 @@ public class Card : MonoBehaviour
                     // print(hit.collider.name);
                     if(hit.transform.parent.gameObject == this.gameObject && selectedCard == null){
                         print("selecting card, got gameobject");
+                        print("Card Name: "+card.name);
                         selectedCard = this.gameObject;
                     }
                     followMouse = true;
