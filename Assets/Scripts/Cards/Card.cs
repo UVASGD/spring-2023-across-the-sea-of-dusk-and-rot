@@ -36,8 +36,8 @@ public class Card : MonoBehaviour
     public float lerpSpeed = 10.0f;
     public float lerpSpeedRotate = 5.0f;
 
-    public bool isTouchActiveForCard = true;
-    private GameObject bag;
+    private bool isTouchActiveForCard = true;
+    public GameObject bag;
     // private GameObject hand;
 
 
@@ -58,6 +58,7 @@ public class Card : MonoBehaviour
         card.setRotLevel(1);
 
         bag = GameObject.Find("Bag");
+        print("bag: " + bag);
     }
 
     public void SetInitialPosition(Vector3 newPosition){
@@ -80,9 +81,12 @@ public class Card : MonoBehaviour
     }
     public void PlaySelectedCard(){
         PlayCard();
+        print("bag: " + bag);
+        print(bag.GetComponent<Bag>() != null);
+        print(selectedCard);
         bag.GetComponent<Bag>().AddCard(selectedCard);
         selectedCard.transform.SetParent(bag.transform);
-        isTouchActiveForCard = false;
+        selectedCard.GetComponent<Card>().SetTouchStatus(false);
     }
     private void PlayCard(){
         //play card
@@ -100,16 +104,16 @@ public class Card : MonoBehaviour
                 removeFromHand = true;
             }
             if(removeFromHand){
-                this.GetComponentInParent<Hand>().RemoveCard(selectedCard);
+                
                 PlaySelectedCard();
-                removeFromHand = false;
+                // this.GetComponentInParent<Hand>().RemoveCard(selectedCard);
 
                 int width = Screen.width;
                 int height = Screen.height;
 
                 Vector3 bottomRightScreenCorner = Camera.main.ScreenToWorldPoint(new Vector3(width/2, -height/2, 0));
 
-                
+                removeFromHand = false;
             }
             
             selectedCard = null;
@@ -125,10 +129,13 @@ public class Card : MonoBehaviour
                     // print("------");
 
                     // print(hit.collider.name);
-                    print(isTouchActiveForCard);
-                    if(hit.transform.parent.gameObject == this.gameObject && selectedCard == null && isTouchActiveForCard == true){
-                        print("selecting card, got gameobject");
+                    // print(isTouchActiveForCard);
+                    if(hit.transform.parent.gameObject == this.gameObject && 
+                        selectedCard == null &&
+                        isTouchActiveForCard == true){
                         selectedCard = this.gameObject;
+                        print("selecting card, got gameobject: " + selectedCard);
+
                     }
                     followMouse = true;
                 }

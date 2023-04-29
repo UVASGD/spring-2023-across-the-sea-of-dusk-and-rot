@@ -50,11 +50,16 @@ public class Hand : MonoBehaviour
             StartCoroutine(RepositionCardsInHand());
         }
     }
-
+    public void ForceUpdate(){
+        update = true;
+        // StartCoroutine(RepositionCardsInHand());
+    }
     private void CheckCardsInHand(){
         int cardCount = 0;
+        List<GameObject> tempList = new();
         foreach(Transform child in this.transform){
             if(child.GetComponent<Card>() && child.gameObject.activeInHierarchy){
+                tempList.Add(child.gameObject);
                 cardCount += 1;
             }
         }
@@ -62,7 +67,8 @@ public class Hand : MonoBehaviour
         // print("card count: " + cardCount);
         if(cardCount != currentCardCount){
             update = true;
-            cardCount = currentCardCount;
+            cards = tempList;
+            currentCardCount = cardCount;
         }
         
     }
