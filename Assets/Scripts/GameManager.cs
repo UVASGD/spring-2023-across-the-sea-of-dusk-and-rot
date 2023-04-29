@@ -26,10 +26,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (!playersTurn){
-            int countdown = 100;
-            while(countdown>=0){
-                countdown -= 1;
-            }
             print("ENEMY ATTACK!");
             player.AttackPlayer(enemy.attack);
             playersTurn = true;
@@ -45,9 +41,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void Heal(int health){
-        player.HealPlayer(health);
+        if(playersTurn){
+            print("Card Data received");
+            player.HealPlayer(health);   
+            playersTurn = false;
+        }
     }
     public void Defend(int defense){
-        player.DefendPlayer(defense);
+        if(playersTurn){
+            print("Card Data received");
+            player.DefendPlayer(defense);   
+            playersTurn = false;
+        }
     }
 }

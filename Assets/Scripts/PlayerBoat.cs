@@ -24,15 +24,15 @@ public class PlayerBoat : MonoBehaviour
     }
 
     public void AttackPlayer(int attack){
-        if(defense>0){
-            int i = attack;
-            while(i>0 || defense>0){
-                health -= 1;
-                i -= 1;
+        if(defense!=0){
+            defense -= attack;
+            if(defense<0){
+                attack += defense;
             }
-            attack = i;
         }
-        health -= attack;
+        else{
+            health -= attack;
+        }
     }
     public void HealPlayer(int healAmount){
         health += healAmount;
