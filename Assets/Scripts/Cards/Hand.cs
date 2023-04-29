@@ -25,7 +25,6 @@ public class Hand : MonoBehaviour
         circleCenter = GetComponentInChildren<Circle>().getCircleCenter();
         //prefab includes a card object; only purpose is to get dimensions
         cardDimensions = GetComponentInChildren<Card>().getCardDimensions();
-        transform.Find("Card_Placeholder").gameObject.SetActive(false); //set gameobject to false afterwards to avoid disrupting other scripts
         transform.Find("Circle").gameObject.SetActive(false);
 
         //add to set of cards in hand the children that are cards
