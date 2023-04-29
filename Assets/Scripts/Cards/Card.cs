@@ -47,16 +47,14 @@ public class Card : MonoBehaviour
         initialPosition = Camera.main.WorldToScreenPoint(transform.position);
         nameText.text = card.name;
         descriptionText.text = card.description;
-        effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
         artworkimage.texture = card.artwork;
         cardTransform = GetComponent<Transform>();
         scalechange = new Vector3(0.2f,0.2f,0.0f);
         ogColor = GetComponent<Renderer>().material.color;
         meshRenderer = cardTransform.GetChild(0).GetComponent<Renderer>();
-        card.setRotLevel(1);
         gm = FindObjectOfType<GameManager>();
         bag = GameObject.Find("Bag");
-        print("bag: " + bag);
+        card.setRotLevel(1);
     }
 
     public void SetInitialPosition(Vector3 newPosition){
@@ -79,14 +77,13 @@ public class Card : MonoBehaviour
         meshRenderer.material = m;
     }
     public CardData GetCardData(){
-        return card;
+        return transform.GetComponent<Card>().card;
     }
     public void Initialize(){
         //add properties
     }
     public void PlaySelectedCard(){
         PlayCard();
-        print("bag: " + bag);
         print(bag.GetComponent<Bag>() != null);
         print(selectedCard);
         bag.GetComponent<Bag>().AddCard(selectedCard);
@@ -95,34 +92,42 @@ public class Card : MonoBehaviour
     }
     private void PlayCard(){
         //play card
-        print("Sending Card Data");
+        //print("Sending Card Data");
         CardData data = selectedCard.GetComponent<Card>().card;
         switch (data.type)
         {
             case Type.DEFENSE:
-                print("DEFENSE");
-                gm.Defend(data.getEffect(data.type));
+                gm.Defend((int)data.getEffect(data.type), selectedCard.GetComponent<Card>());
                 break;
             case Type.HEAL:
-                print("HEAL");
-                gm.Heal(data.getEffect(data.type));
+                gm.Heal((int)data.getEffect(data.type), selectedCard.GetComponent<Card>());
+                break;
+            case Type.CLEAN:
+                gm.CleanNextCard((int)data.getEffect(data.type));
+                break;
+            case Type.ENHANCE:
+                gm.EnhanceNextCard(data.getEffect(data.type),selectedCard.GetComponent<Card>());
                 break;
             default:
-                print("Attack "+card.type);
-                gm.Attack(data.getEffect(data.type));
-                print("Damage: "+data.getEffect(data.type));
+                gm.Attack((int)data.getEffect(data.type), selectedCard.GetComponent<Card>());
                 break;
         }
-        data.setRotLevel(data.getRotLevel()+1);
-        print("New Rot: "+data.getRotLevel());
+        data.setRotLevel((int)data.getRotLevel()+1);
         updateRotTexture();
         
     }
     // Update is called once per frame
     void Update()
     {
-        effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
-
+        if(card.type == Type.CLEAN){
+            effectText.text = "This Card Cleans the Rot of The Next Played Card";
+        }
+        else if(card.type == Type.ENHANCE){
+            effectText.text = "This Card Enhance The Power Of The Next Played Card";
+        }
+        else{
+            effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
+        }
         if(!Input.GetMouseButton(0)){
             //temp play logic
             float mousePos = Input.mousePosition.y;
@@ -132,7 +137,6 @@ public class Card : MonoBehaviour
             if(removeFromHand){
                 
                 PlaySelectedCard();
-                // this.GetComponentInParent<Hand>().RemoveCard(selectedCard);
 
                 int width = Screen.width;
                 int height = Screen.height;
@@ -150,18 +154,10 @@ public class Card : MonoBehaviour
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if(Physics.Raycast(ray, out hit))
                 {
-                    // print(hit.transform.parent.gameObject);
-                    // print(this.gameObject);
-                    // print("------");
-
-                    // print(hit.collider.name);
-                    // print(isTouchActiveForCard);
                     if(hit.transform.parent.gameObject == this.gameObject && 
                         selectedCard == null &&
                         isTouchActiveForCard == true){
                         selectedCard = this.gameObject;
-                        print("selecting card, got gameobject: " + selectedCard);
-                        print("Card Type: "+selectedCard.GetComponent<Card>().card.type);
 
                     }
                     followMouse = true;
@@ -188,32 +184,19 @@ public class Card : MonoBehaviour
         int rot = (int)currentCard.GetCardData().getRotLevel();
         switch(rot){
             case 2:
-                print("Texture 2");
                 currentCard.SetMaterial(rot2);
-                // meshRenderer.material = rot2;
-                // print(meshRenderer.material);
                 break;
             case 3:
-                print("Texture 3");
                 currentCard.SetMaterial(rot3);
-                // meshRenderer.material = rot3;
-                // print(meshRenderer.material);
                 break;
             case 4:
-                print("Texture 4");
                 currentCard.SetMaterial(rot4);
-                // meshRenderer.material = rot4;
-                // print(meshRenderer.material);
                 break;
             case 5:
-                print("Texture 5");
                 currentCard.SetMaterial(rot5);
-                // meshRenderer.material = rot5;
-                // print(meshRenderer.material);
                 break;
             default:
                 currentCard.SetMaterial(rot1);
-                // meshRenderer.material = rot1;
                 break;
             
         }

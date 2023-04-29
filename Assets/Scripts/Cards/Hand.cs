@@ -31,15 +31,12 @@ public class Hand : MonoBehaviour
         //add to set of cards in hand the children that are cards
         int cardCount = 0;
         foreach(Transform child in this.transform){
-            print("beans");
             if(child.GetComponent<Card>() && child.gameObject.activeInHierarchy){
                 cards.Add(child.gameObject);
                 currentCardCount += 1;
             }
         }
         CheckCardsInHand();
-        print(cards.Count);
-        print(cardDimensions);
     }
 
     // Update is called once per frame

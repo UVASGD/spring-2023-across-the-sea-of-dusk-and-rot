@@ -27,7 +27,8 @@ public class PlayerBoat : MonoBehaviour
         if(defense!=0){
             defense -= attack;
             if(defense<0){
-                attack += defense;
+                health += defense;
+                defense = 0;
             }
         }
         else{

@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
     private PlayerBoat player;
     private Hand hand;
     private Bag bag;
-
+    private bool cleanNext;
+    private int cleanValue;
     private bool redealHand = false;
+    private bool enhanceNext;
+    private double enhanceValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,10 @@ public class GameManager : MonoBehaviour
         player = tempArray[0].GetComponent<PlayerBoat>();
         hand = GameObject.Find("Hand").GetComponent<Hand>();
         bag = GameObject.Find("Bag").GetComponent<Bag>();
+        cleanNext = false;
+        cleanValue = 0;
+        enhanceNext = false;
+        enhanceValue = 0;
     }
 
     // Update is called once per frame
@@ -46,37 +53,75 @@ public class GameManager : MonoBehaviour
             }
         }
         else{
-            StartCoroutine(EnemyAction());
+            player.AttackPlayer(enemy.attack);
+            playersTurn = true;
         }
 
         
     }
 
-    public void Attack(int attack){
+    public void Attack(int attack, Card card){
         if(playersTurn){
             print("Card Data received");
-            enemy.DealDamage(attack);   
-            playersTurn = false;
+            if(enhanceNext){
+                enemy.DealDamage((int)(attack*enhanceValue));
+                enhanceNext = false;
+                enhanceValue = 0;
+            }
+            else{
+                enemy.DealDamage(attack);
+            }
+            performClean(cleanNext, card);
         }
     }
 
-    public void Heal(int health){
+    public void Heal(int health, Card card){
         if(playersTurn){
             print("Card Data received");
-            player.HealPlayer(health);   
-            playersTurn = false;
+            if(enhanceNext){
+                player.HealPlayer((int)(health*enhanceValue));
+                enhanceNext = false;
+                enhanceValue = 0;
+            }
+            else{
+                player.HealPlayer(health); 
+            }
+            performClean(cleanNext, card);
         }
     }
-    public void Defend(int defense){
+    public void Defend(int defense, Card card){
         if(playersTurn){
             print("Card Data received");
-            player.DefendPlayer(defense);   
-            playersTurn = false;
+            if(enhanceNext){
+                player.DefendPlayer((int)(defense*enhanceValue));
+                enhanceNext = false;
+                enhanceValue = 0;
+            }
+            else{
+                player.DefendPlayer(defense); 
+            }
+            performClean(cleanNext, card);
         }
     }
-    IEnumerator EnemyAction(){
-        yield return new WaitForSeconds(2);
-        player.AttackPlayer(enemy.attack);
-        playersTurn = true;
+    public void CleanNextCard(int clean){
+        cleanNext = true;
+        cleanValue = clean;
+    }
+    public void EnhanceNextCard(double value, Card card){
+        enhanceNext = true;
+        enhanceValue = value;
+        performClean(cleanNext, card);
+    }
+
+    private void performClean(bool c, Card card){
+        if(c){
+            CardData data = card.GetCardData();
+            print("Cleaning "+cleanValue);
+            print("Rot Before: "+data.getRotLevel());
+            data.setRotLevel((int)data.getRotLevel()-cleanValue);
+            print("Rot After: "+data.getRotLevel());
+            cleanNext = false;
+            cleanValue = 0;
+        }
     }
 }

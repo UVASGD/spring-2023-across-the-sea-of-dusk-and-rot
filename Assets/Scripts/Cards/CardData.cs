@@ -12,37 +12,67 @@ public class CardData : ScriptableObject
 
     public Texture artwork;
     ///////////////////////
-    public int attack;
-    public int defense;
-    public int heal;
-    public Type type;
-    private int rot;
+    public int attack; //Attack Dmg
+    public int defense; //Defense for Player
+    public int heal; //Heals Player
+    public Type type; //Enum Determines role of card
+    public double clean; //Clears Rot, degrades with each use
+    public double enhance; //Powers next attack
+    private double rot; //Rot level increases with each use, degrading the effect of the card
 
+    private void Start() {
+        if(type == Type.CLEAN){
+            clean = 5;
+        }
+    }
     private int getAttack(){
-        // Debug.Log("Rot: "+rot);
-        // Debug.Log("Rot modifier "+1/rot);
+        if(rot == 0){
+            rot = 1;
+        }
         double rotMod = 1/rot;
         int modifiedAttack = (int)(attack*rotMod);
         return modifiedAttack;
     }
     private int getDefense(){
-        return defense;
+        if(rot == 0){
+            rot = 1;
+        }
+        double rotMod = 1/rot;
+        int modifiedDefense = (int)(defense*rotMod);
+        return modifiedDefense;
     }
     private int getHeal(){
-        return heal;
+        if(rot == 0){
+            rot = 1;
+        }
+        double rotMod = 1/rot;
+        int modifiedHeal = (int)(heal*rotMod);
+        return modifiedHeal;
     }
-    public int getRotLevel(){
+    private int getClean(){
+        int modifiedClean = (int)(clean - (0.667*rot));
+        return modifiedClean;
+    }
+    private double getEnhance(){
+        if(rot == 0){
+            rot = 1;
+        }
+        double rotMod = 1/rot;
+        double modifiedEnhance = (int)(enhance*rotMod);
+        if(modifiedEnhance<1.2){ modifiedEnhance = 1.2; }
+        return modifiedEnhance;
+    }
+    public double getRotLevel(){
         return rot;
     }
     public void setRotLevel(int newRotLevel){
-        //This ensures a card will always do at least 1 damage
-        if(newRotLevel>=attack){
-            newRotLevel = attack;
+        if(newRotLevel>5){
+            newRotLevel = 5;
         }
         rot = newRotLevel;
     }
 
-    public int getEffect(Type type){
+    public double getEffect(Type type){
         switch(type){
             case Type.ATTACK:
                 return getAttack();
@@ -50,8 +80,10 @@ public class CardData : ScriptableObject
                 return getDefense();
             case Type.HEAL:
                 return getHeal();
-            case Type.SPECIAL:
-                return 0; //Special Cards will need to be implemented later on
+            case Type.CLEAN:
+                return getClean(); //Special Cards will need to be implemented later on
+            case Type.ENHANCE:
+                return getEnhance();
             default:
                 return 0;
             
@@ -64,6 +96,6 @@ public enum Type{
     ATTACK,
     DEFENSE,
     HEAL,
-    SPECIAL
-
+    ENHANCE,
+    CLEAN
 }
