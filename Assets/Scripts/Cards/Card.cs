@@ -69,10 +69,6 @@ public class Card : MonoBehaviour
     public void SetRotation(Vector3 newRotation){
         rotation = newRotation;
     }
-    
-    public void PlaySelectedCard(){
-        PlayCard();
-        transform.parent.gameObject.GetComponent<Hand>().RemoveCard(selectedCard);
     public bool GetTouchStatus(){
         return isTouchActiveForCard;
     }
