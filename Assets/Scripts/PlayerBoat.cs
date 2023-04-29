@@ -5,14 +5,13 @@ using TMPro;
 
 public class PlayerBoat : MonoBehaviour
 {
-    private int health;
+    public int health;
     private int defense;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI defenseText;
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
         defense = 0;
     }
 

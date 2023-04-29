@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 7399ba6ef5284ea46b4002d8d012edf7
+  - enabled: 1
+    path: Assets/Scenes/Duck.unity
+    guid: dfaa3e668eda9084a8aa613c15f00272
+  - enabled: 1
+    path: Assets/Scenes/Shark.unity
+    guid: 89650087ac125584ebbe6ab4948f0cad
+  - enabled: 1
+    path: Assets/Scenes/BlowFish.unity
+    guid: f5592ca705dd05849abe3428de64c9c1
+  - enabled: 1
+    path: Assets/Scenes/Crab.unity
+    guid: 9f69a108dea5ef14c8368f4f7a73a5b4
   m_configObjects: {}

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Camera camera;
+    public int nextSceneID;
     private CardData card;
     private Card display;
     private Enemy enemy;
@@ -18,6 +21,8 @@ public class GameManager : MonoBehaviour
     private bool redealHand = false;
     private bool enhanceNext;
     private double enhanceValue;
+    public GameObject gameOver;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +35,7 @@ public class GameManager : MonoBehaviour
         cleanValue = 0;
         enhanceNext = false;
         enhanceValue = 0;
+        gameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +59,14 @@ public class GameManager : MonoBehaviour
         else{
             player.AttackPlayer(enemy.attack);
             playersTurn = true;
+        }
+        if(player.health<=0){
+            gameOver.SetActive(true);
+            Time.timeScale = 0;
+        }
+        if(enemy.currHealth<=0){
+            gameOver.SetActive(true);
+            SceneManager.LoadScene(nextSceneID);
         }
 
         
