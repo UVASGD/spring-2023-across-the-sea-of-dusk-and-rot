@@ -90,15 +90,16 @@ public class Card : MonoBehaviour
     private void PlayCard(){
         //play card
         print("Sending Card Data");
-        switch (card.type)
+        CardData data = selectedCard.GetComponent<Card>().card;
+        switch (data.type)
         {
             case Type.DEFENSE:
-                print("Defense "+card.type);
-                gm.Defend(card.getEffect(card.type));
+                print("DEFENSE");
+                gm.Defend(data.getEffect(data.type));
                 break;
             case Type.HEAL:
-                print("Heal "+card.type);
-                gm.Heal(card.getEffect(card.type));
+                print("HEAL");
+                gm.Heal(data.getEffect(data.type));
                 break;
             default:
                 print("Attack "+card.type);
@@ -113,7 +114,6 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print("GameManager: "+gm.gameObject);
         effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
 
         if(!Input.GetMouseButton(0)){
@@ -154,6 +154,7 @@ public class Card : MonoBehaviour
                         isTouchActiveForCard == true){
                         selectedCard = this.gameObject;
                         print("selecting card, got gameobject: " + selectedCard);
+                        print("Card Type: "+selectedCard.GetComponent<Card>().card.type);
 
                     }
                     followMouse = true;

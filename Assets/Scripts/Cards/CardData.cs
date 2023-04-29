@@ -21,13 +21,13 @@ public class CardData : ScriptableObject
     private int getAttack(){
         // Debug.Log("Rot: "+rot);
         // Debug.Log("Rot modifier "+1/rot);
-        return (int)Mathf.Ceil(attack*(1/rot));
+        return attack;
     }
     private int getDefense(){
-        return (int)Mathf.Ceil(defense*(1/rot));
+        return defense;
     }
     private int getHeal(){
-        return (int)Mathf.Ceil(heal*(1/rot));
+        return heal;
     }
     public float getRotLevel(){
         return rot;
