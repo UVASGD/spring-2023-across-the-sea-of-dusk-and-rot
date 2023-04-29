@@ -13,7 +13,6 @@ public class Hand : MonoBehaviour
     private Vector3 cardDimensions;
     private float circleRadius;
     private float circleCenter;
-    private float cardOverlapAmount = 0.1f;
 
     private int currentCardCount = 0;
     private bool update = true;
@@ -76,7 +75,7 @@ public class Hand : MonoBehaviour
     }
 
     IEnumerator RepositionCardsInHand(){
-        print("repositioning cards");
+        //print("repositioning cards");
         int numCards = cards.Count;
         float cardStartingPosX = 0;
         Vector3 screenCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, 0));
@@ -92,8 +91,8 @@ public class Hand : MonoBehaviour
             }
         }
         else{
-            Debug.Log("center X: " + screenCenter.x);
-            Debug.Log("card width: " + cardDimensions.x);
+            //Debug.Log("center X: " + screenCenter.x);
+            //Debug.Log("card width: " + cardDimensions.x);
             if(numCards == 1){
                 cardStartingPosX = 0.0f;
             }
@@ -108,9 +107,9 @@ public class Hand : MonoBehaviour
             float angle = Mathf.Atan2(-circleCenter, cardStartingPosX);
             // print("angle: " + angle);
             float temp = Mathf.Sin(angle);
-            Debug.Log("starting X: " + cardStartingPosX);
-            Debug.Log("angle: " + angle*Mathf.Rad2Deg);
-            Debug.Log("sin of angle: " + temp);
+            //Debug.Log("starting X: " + cardStartingPosX);
+            //Debug.Log("angle: " + angle*Mathf.Rad2Deg);
+            //Debug.Log("sin of angle: " + temp);
 
             float newY = Mathf.Sin(angle) * circleRadius + circleCenter;
             // Debug.Log("new X: " + cardStartingPosX + (float)(cardDimensions.x)/2);

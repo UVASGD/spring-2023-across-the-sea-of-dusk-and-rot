@@ -19,8 +19,8 @@ public class CardData : ScriptableObject
     private float rot;
 
     private int getAttack(){
-        Debug.Log("Rot: "+rot);
-        Debug.Log("Rot modifier "+1/rot);
+        // Debug.Log("Rot: "+rot);
+        // Debug.Log("Rot modifier "+1/rot);
         return (int)Mathf.Ceil(attack*(1/rot));
     }
     private int getDefense(){

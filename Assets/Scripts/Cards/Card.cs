@@ -36,6 +36,7 @@ public class Card : MonoBehaviour
     public float lerpSpeed = 10.0f;
     public float lerpSpeedRotate = 5.0f;
 
+    private GameManager gm;
 
 
     // Start is called before the first frame update
@@ -52,6 +53,7 @@ public class Card : MonoBehaviour
         ogColor = renderer.material.color;
         meshRenderer = GetComponent<MeshRenderer>();
         card.setRotLevel(1);
+        gm = FindObjectOfType<GameManager>();
     }
 
     public void SetInitialPosition(Vector3 newPosition){
@@ -63,25 +65,28 @@ public class Card : MonoBehaviour
     public void SetRotation(Vector3 newRotation){
         rotation = newRotation;
     }
-    public void Initialize(){
-        //add properties
-    }
+    
     public void PlaySelectedCard(){
         PlayCard();
+        transform.parent.gameObject.GetComponent<Hand>().RemoveCard(selectedCard);
         Destroy(selectedCard);
     }
     private void PlayCard(){
         //play card
+        print("Sending Card Data");
+        gm.Attack(card.getEffect(card.type));
+        
     }
     // Update is called once per frame
     void Update()
     {
+        //print("GameManager: "+gm.gameObject);
         effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
 
         if(!Input.GetMouseButton(0)){
             //temp play logic
             float mousePos = Input.mousePosition.y;
-            print("mouse pos: " + mousePos);
+            //print("mouse pos: " + mousePos);
             if(mousePos > 400 && selectedCard != null){
                 removeFromHand = true;
             }

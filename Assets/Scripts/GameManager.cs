@@ -12,29 +12,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].GetComponent<Enemy>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray,out RaycastHit hitInfo)){
-                if(hitInfo.collider.gameObject.tag=="Card"){
-                    card = hitInfo.collider.gameObject.GetComponent<Card>().card;
-                    display = hitInfo.collider.gameObject.GetComponent<Card>();
-                }
-                if(hitInfo.collider.gameObject.tag=="Enemy"){
-                    enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-                    enemy.DealDamage(card.getEffect(card.type));
-                    Debug.Log(enemy.currHealth);
-                    card.setRotLevel(card.getRotLevel()+1);
-                    display.updateRotTexture();
-                    Debug.Log("Rot at level "+card.getRotLevel()+", attack now at "+card.getEffect(card.type));
-                    card = null;
-                }
-            }
-        }
+    }
+
+    public void Attack(int attack){
+        print("Card Data received");
+        enemy.DealDamage(attack);
     }
 }
