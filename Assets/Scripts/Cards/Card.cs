@@ -36,6 +36,9 @@ public class Card : MonoBehaviour
     public float lerpSpeedRotate = 5.0f;
 
     private GameManager gm;
+    private bool isTouchActiveForCard = true;
+    public GameObject bag;
+    // private GameObject hand;
 
 
     // Start is called before the first frame update
@@ -52,6 +55,8 @@ public class Card : MonoBehaviour
         meshRenderer = cardTransform.GetChild(0).GetComponent<Renderer>();
         card.setRotLevel(1);
         gm = FindObjectOfType<GameManager>();
+        bag = GameObject.Find("Bag");
+        print("bag: " + bag);
     }
 
     public void SetInitialPosition(Vector3 newPosition){
@@ -68,6 +73,23 @@ public class Card : MonoBehaviour
     public void PlaySelectedCard(){
         PlayCard();
         transform.parent.gameObject.GetComponent<Hand>().RemoveCard(selectedCard);
+    public bool GetTouchStatus(){
+        return isTouchActiveForCard;
+    }
+    public void SetTouchStatus(bool newTouchStatus){
+        isTouchActiveForCard = newTouchStatus;
+    }
+    public void Initialize(){
+        //add properties
+    }
+    public void PlaySelectedCard(){
+        PlayCard();
+        print("bag: " + bag);
+        print(bag.GetComponent<Bag>() != null);
+        print(selectedCard);
+        bag.GetComponent<Bag>().AddCard(selectedCard);
+        selectedCard.transform.SetParent(bag.transform);
+        selectedCard.GetComponent<Card>().SetTouchStatus(false);
     }
     private void PlayCard(){
         //play card
@@ -101,13 +123,19 @@ public class Card : MonoBehaviour
         if(!Input.GetMouseButton(0)){
             //temp play logic
             float mousePos = Input.mousePosition.y;
-            //print("mouse pos: " + mousePos);
             if(mousePos > 400 && selectedCard != null){
                 removeFromHand = true;
             }
             if(removeFromHand){
-                this.GetComponentInParent<Hand>().RemoveCard(selectedCard);
+                
                 PlaySelectedCard();
+                // this.GetComponentInParent<Hand>().RemoveCard(selectedCard);
+
+                int width = Screen.width;
+                int height = Screen.height;
+
+                Vector3 bottomRightScreenCorner = Camera.main.ScreenToWorldPoint(new Vector3(width/2, -height/2, 0));
+
                 removeFromHand = false;
             }
             
@@ -124,10 +152,13 @@ public class Card : MonoBehaviour
                     // print("------");
 
                     // print(hit.collider.name);
-                    if(hit.transform.parent.gameObject == this.gameObject && selectedCard == null){
-                        print("selecting card, got gameobject");
-                        print("Card Name: "+card.name);
+                    // print(isTouchActiveForCard);
+                    if(hit.transform.parent.gameObject == this.gameObject && 
+                        selectedCard == null &&
+                        isTouchActiveForCard == true){
                         selectedCard = this.gameObject;
+                        print("selecting card, got gameobject: " + selectedCard);
+
                     }
                     followMouse = true;
                 }
@@ -137,8 +168,8 @@ public class Card : MonoBehaviour
         if(followMouse &&  selectedCard == this.gameObject){
             float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
-            cardTransform.position = Vector3.Lerp(cardTransform.position, targetPosition, lerpSpeed*Time.deltaTime);
-            cardTransform.rotation = Quaternion.Lerp(cardTransform.rotation, Quaternion.Euler(new Vector3(0, 0, 0)), lerpSpeedRotate*Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed*Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, 0)), lerpSpeedRotate*Time.deltaTime);
         }
         else{
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(initialPosition);
