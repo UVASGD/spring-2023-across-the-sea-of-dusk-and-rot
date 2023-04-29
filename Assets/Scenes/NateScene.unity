@@ -258,7 +258,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -771315410965110703, guid: 845fdbc18a272a848af1d268f72fe7dc, type: 3}
       propertyPath: cards.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -771315410965110703, guid: 845fdbc18a272a848af1d268f72fe7dc, type: 3}
       propertyPath: cards.Array.data[0]
