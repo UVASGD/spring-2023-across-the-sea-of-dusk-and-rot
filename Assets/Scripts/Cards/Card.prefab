@@ -209,6 +209,7 @@ MonoBehaviour:
   rot5: {fileID: 2100000, guid: aa3765e95e6f1534c875035995963290, type: 2}
   lerpSpeed: 25
   lerpSpeedRotate: 10
+  bag: {fileID: 0}
 --- !u!23 &3166270216491687562
 MeshRenderer:
   m_ObjectHideFlags: 0

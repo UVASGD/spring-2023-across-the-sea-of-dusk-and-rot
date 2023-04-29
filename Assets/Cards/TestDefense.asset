@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7f355d8502ac5478a4f6d99c822332, type: 3}
   m_Name: TestDefense
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  artwork: {fileID: 0}
+  name: test def
+  description: test def
+  artwork: {fileID: 2800000, guid: 84a2f8b9cf471ce4bbc1622009349f59, type: 3}
   attack: 0
-  defense: 0
+  defense: 10
   heal: 0
-  type: 0
+  type: 1

@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void DealDamage(int attack){
+        print(attack);
         currHealth -= attack;
     }
 }

@@ -16,23 +16,23 @@ public class CardData : ScriptableObject
     public int defense;
     public int heal;
     public Type type;
-    private float rot;
+    private int rot;
 
     private int getAttack(){
         // Debug.Log("Rot: "+rot);
         // Debug.Log("Rot modifier "+1/rot);
-        return (int)Mathf.Ceil(attack*(1/rot));
+        return attack;
     }
     private int getDefense(){
-        return (int)Mathf.Ceil(defense*(1/rot));
+        return defense;
     }
     private int getHeal(){
-        return (int)Mathf.Ceil(heal*(1/rot));
+        return heal;
     }
-    public float getRotLevel(){
+    public int getRotLevel(){
         return rot;
     }
-    public void setRotLevel(float newRotLevel){
+    public void setRotLevel(int newRotLevel){
         //This ensures a card will always do at least 1 damage
         if(newRotLevel>=attack){
             newRotLevel = attack;

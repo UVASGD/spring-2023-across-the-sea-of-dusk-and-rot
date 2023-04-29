@@ -11,26 +11,53 @@ public class GameManager : MonoBehaviour
     private Dictionary<Card,int> cardRotLevels;
     private bool playersTurn;
     private PlayerBoat player;
+    private Hand hand;
+    private Bag bag;
+
+    private bool redealHand = false;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].GetComponent<Enemy>();
         playersTurn = true;
         player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerBoat>();
+        hand = GameObject.Find("Hand").GetComponent<Hand>();
+        bag = GameObject.Find("Bag").GetComponent<Bag>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playersTurn){
-            int countdown = 100;
-            while(countdown>=0){
-                countdown -= 1;
-            }
-            print("ENEMY ATTACK!");
-            player.AttackPlayer(enemy.attack);
-            playersTurn = true;
+        // if (!playersTurn){
+        //     int countdown = 100;
+        //     while(countdown>=0){
+        //         countdown -= 1;
+        //     }
+        //     print("ENEMY ATTACK!");
+        //     player.AttackPlayer(enemy.attack);
+        //     playersTurn = true;
+        // }
+
+        if(redealHand && playersTurn){
+            bag.SetDealCards(true);
+            redealHand = false;
         }
+
+        if(playersTurn){
+            if(hand.GetNumberOfCardsInHand() <= 0){
+                playersTurn = false;
+                redealHand = true;
+            }
+            if(Input.GetKeyDown(KeyCode.L)){
+                playersTurn = false;
+                redealHand = true;
+            }
+        }
+        else{
+            StartCoroutine(EnemyAction());
+        }
+
+        
     }
 
     public void Attack(int attack){
@@ -46,5 +73,10 @@ public class GameManager : MonoBehaviour
     }
     public void Defend(int defense){
         player.DefendPlayer(defense);
+    }
+    IEnumerator EnemyAction(){
+        yield return new WaitForSeconds(2);
+        player.AttackPlayer(enemy.attack);
+        playersTurn = true;
     }
 }

@@ -38,6 +38,9 @@ public class Bag : MonoBehaviour
         cards.Add(card);
         // print(cardDimensions);
     }
+    public void SetDealCards(bool deal){
+        dealCards = deal;
+    }
 
     // Update is called once per frame
     void Update()

@@ -75,6 +75,12 @@ public class Card : MonoBehaviour
     public void SetTouchStatus(bool newTouchStatus){
         isTouchActiveForCard = newTouchStatus;
     }
+    public void SetMaterial(Material m){
+        meshRenderer.material = m;
+    }
+    public CardData GetCardData(){
+        return card;
+    }
     public void Initialize(){
         //add properties
     }
@@ -90,23 +96,25 @@ public class Card : MonoBehaviour
     private void PlayCard(){
         //play card
         print("Sending Card Data");
-        switch (card.type)
+
+        CardData currentCard = selectedCard.GetComponent<Card>().GetCardData();
+        switch (currentCard.type)
         {
             case Type.DEFENSE:
-                print("Defense "+card.type);
-                gm.Defend(card.getEffect(card.type));
+                print("Defense "+currentCard.type);
+                gm.Defend(currentCard.getEffect(currentCard.type));
                 break;
             case Type.HEAL:
-                print("Heal "+card.type);
-                gm.Heal(card.getEffect(card.type));
+                print("Heal "+currentCard.type);
+                gm.Heal(currentCard.getEffect(currentCard.type));
                 break;
             default:
-                print("Attack "+card.type);
-                gm.Attack(card.getEffect(card.type));
+                print("Attack "+currentCard.type);
+                gm.Attack(currentCard.getEffect(currentCard.type));
                 break;
         }
         
-        card.setRotLevel(card.getRotLevel()+1);
+        currentCard.setRotLevel(currentCard.getRotLevel()+1);
         updateRotTexture();
         
     }
@@ -176,30 +184,36 @@ public class Card : MonoBehaviour
     } 
 
     public void updateRotTexture(){
-        int rot = (int)card.getRotLevel();
+        Card currentCard = selectedCard.GetComponent<Card>();
+        int rot = (int)currentCard.GetCardData().getRotLevel();
         switch(rot){
             case 2:
                 print("Texture 2");
-                meshRenderer.material = rot2;
-                print(meshRenderer.material);
+                currentCard.SetMaterial(rot2);
+                // meshRenderer.material = rot2;
+                // print(meshRenderer.material);
                 break;
             case 3:
                 print("Texture 3");
-                meshRenderer.material = rot3;
-                print(meshRenderer.material);
+                currentCard.SetMaterial(rot3);
+                // meshRenderer.material = rot3;
+                // print(meshRenderer.material);
                 break;
             case 4:
                 print("Texture 4");
-                meshRenderer.material = rot4;
-                print(meshRenderer.material);
+                currentCard.SetMaterial(rot4);
+                // meshRenderer.material = rot4;
+                // print(meshRenderer.material);
                 break;
             case 5:
                 print("Texture 5");
-                meshRenderer.material = rot5;
-                print(meshRenderer.material);
+                currentCard.SetMaterial(rot5);
+                // meshRenderer.material = rot5;
+                // print(meshRenderer.material);
                 break;
             default:
-                meshRenderer.material = rot1;
+                currentCard.SetMaterial(rot1);
+                // meshRenderer.material = rot1;
                 break;
             
         }
