@@ -69,7 +69,7 @@ public class Card : MonoBehaviour
     public void PlaySelectedCard(){
         PlayCard();
         transform.parent.gameObject.GetComponent<Hand>().RemoveCard(selectedCard);
-        Destroy(selectedCard);
+        transform.parent.gameObject.GetComponent<Hand>().AddCard(selectedCard);
     }
     private void PlayCard(){
         //play card
