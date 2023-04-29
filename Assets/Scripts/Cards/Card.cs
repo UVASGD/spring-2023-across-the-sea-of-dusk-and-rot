@@ -11,11 +11,10 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public RawImage artworkimage;
     public TextMeshProUGUI effectText;
-    private Renderer renderer;
     private Transform cardTransform;
     private Vector3 scalechange;
     private Color ogColor;
-    private MeshRenderer meshRenderer;
+    private Renderer meshRenderer;
 
     //Rot Textures
     public Material rot1;
@@ -47,11 +46,10 @@ public class Card : MonoBehaviour
         descriptionText.text = card.description;
         effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
         artworkimage.texture = card.artwork;
-        renderer = GetComponent<Renderer>();
         cardTransform = GetComponent<Transform>();
         scalechange = new Vector3(0.2f,0.2f,0.0f);
-        ogColor = renderer.material.color;
-        meshRenderer = GetComponent<MeshRenderer>();
+        ogColor = GetComponent<Renderer>().material.color;
+        meshRenderer = GetComponent<Renderer>();
         card.setRotLevel(1);
         gm = FindObjectOfType<GameManager>();
     }
@@ -69,12 +67,13 @@ public class Card : MonoBehaviour
     public void PlaySelectedCard(){
         PlayCard();
         transform.parent.gameObject.GetComponent<Hand>().RemoveCard(selectedCard);
-        Destroy(selectedCard);
     }
     private void PlayCard(){
         //play card
         print("Sending Card Data");
         gm.Attack(card.getEffect(card.type));
+        card.setRotLevel(card.getRotLevel()+1);
+        updateRotTexture();
         
     }
     // Update is called once per frame
@@ -131,29 +130,29 @@ public class Card : MonoBehaviour
 
         }
     } 
-    private void OnMouseEnter() {
-        renderer.material.color = Color.yellow;
-        cardTransform.localScale += scalechange;
-    }
-    private void OnMouseExit() {
-        renderer.material.color = ogColor;
-        cardTransform.localScale -= scalechange;
-    }
 
     public void updateRotTexture(){
         int rot = (int)card.getRotLevel();
         switch(rot){
             case 2:
+                print("Texture 2");
                 meshRenderer.material = rot2;
+                print(meshRenderer.material);
                 break;
             case 3:
+                print("Texture 3");
                 meshRenderer.material = rot3;
+                print(meshRenderer.material);
                 break;
             case 4:
+                print("Texture 4");
                 meshRenderer.material = rot4;
+                print(meshRenderer.material);
                 break;
             case 5:
+                print("Texture 5");
                 meshRenderer.material = rot5;
+                print(meshRenderer.material);
                 break;
             default:
                 meshRenderer.material = rot1;
