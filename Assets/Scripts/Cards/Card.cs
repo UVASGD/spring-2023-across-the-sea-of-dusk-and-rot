@@ -36,6 +36,10 @@ public class Card : MonoBehaviour
     public float lerpSpeed = 10.0f;
     public float lerpSpeedRotate = 5.0f;
 
+    public bool isTouchActiveForCard = true;
+    private GameObject bag;
+    // private GameObject hand;
+
 
 
     // Start is called before the first frame update
@@ -52,6 +56,8 @@ public class Card : MonoBehaviour
         ogColor = renderer.material.color;
         meshRenderer = GetComponent<MeshRenderer>();
         card.setRotLevel(1);
+
+        bag = GameObject.Find("Bag");
     }
 
     public void SetInitialPosition(Vector3 newPosition){
@@ -63,12 +69,20 @@ public class Card : MonoBehaviour
     public void SetRotation(Vector3 newRotation){
         rotation = newRotation;
     }
+    public bool GetTouchStatus(){
+        return isTouchActiveForCard;
+    }
+    public void SetTouchStatus(bool newTouchStatus){
+        isTouchActiveForCard = newTouchStatus;
+    }
     public void Initialize(){
         //add properties
     }
     public void PlaySelectedCard(){
         PlayCard();
-        Destroy(selectedCard);
+        bag.GetComponent<Bag>().AddCard(selectedCard);
+        selectedCard.transform.SetParent(bag.transform);
+        isTouchActiveForCard = false;
     }
     private void PlayCard(){
         //play card
@@ -81,7 +95,7 @@ public class Card : MonoBehaviour
         if(!Input.GetMouseButton(0)){
             //temp play logic
             float mousePos = Input.mousePosition.y;
-            print("mouse pos: " + mousePos);
+            // print("mouse pos: " + mousePos);
             if(mousePos > 400 && selectedCard != null){
                 removeFromHand = true;
             }
@@ -89,6 +103,13 @@ public class Card : MonoBehaviour
                 this.GetComponentInParent<Hand>().RemoveCard(selectedCard);
                 PlaySelectedCard();
                 removeFromHand = false;
+
+                int width = Screen.width;
+                int height = Screen.height;
+
+                Vector3 bottomRightScreenCorner = Camera.main.ScreenToWorldPoint(new Vector3(width/2, -height/2, 0));
+
+                
             }
             
             selectedCard = null;
@@ -104,7 +125,8 @@ public class Card : MonoBehaviour
                     // print("------");
 
                     // print(hit.collider.name);
-                    if(hit.transform.parent.gameObject == this.gameObject && selectedCard == null){
+                    print(isTouchActiveForCard);
+                    if(hit.transform.parent.gameObject == this.gameObject && selectedCard == null && isTouchActiveForCard == true){
                         print("selecting card, got gameobject");
                         selectedCard = this.gameObject;
                     }

@@ -7,7 +7,7 @@ public class Hand : MonoBehaviour
 
 
     [SerializeField]
-    private List<GameObject> cards;
+    private List<GameObject> cards = new();
 
     private List<Vector3> circlePoints;
     private Vector3 cardDimensions;
@@ -31,9 +31,10 @@ public class Hand : MonoBehaviour
         //add to set of cards in hand the children that are cards
         int cardCount = 0;
         foreach(Transform child in this.transform){
+            print("beans");
             if(child.GetComponent<Card>() && child.gameObject.activeInHierarchy){
                 cards.Add(child.gameObject);
-                cardCount += 1;
+                currentCardCount += 1;
             }
         }
         CheckCardsInHand();
@@ -61,6 +62,7 @@ public class Hand : MonoBehaviour
         // print("card count: " + cardCount);
         if(cardCount != currentCardCount){
             update = true;
+            cardCount = currentCardCount;
         }
         
     }
@@ -76,7 +78,8 @@ public class Hand : MonoBehaviour
     }
 
     IEnumerator RepositionCardsInHand(){
-        print("repositioning cards");
+        if(!update) yield return null;
+        // print("repositioning cards");
         int numCards = cards.Count;
         float cardStartingPosX = 0;
         Vector3 screenCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, 0));
@@ -92,8 +95,8 @@ public class Hand : MonoBehaviour
             }
         }
         else{
-            Debug.Log("center X: " + screenCenter.x);
-            Debug.Log("card width: " + cardDimensions.x);
+            // Debug.Log("center X: " + screenCenter.x);
+            // Debug.Log("card width: " + cardDimensions.x);
             if(numCards == 1){
                 cardStartingPosX = 0.0f;
             }
@@ -108,9 +111,9 @@ public class Hand : MonoBehaviour
             float angle = Mathf.Atan2(-circleCenter, cardStartingPosX);
             // print("angle: " + angle);
             float temp = Mathf.Sin(angle);
-            Debug.Log("starting X: " + cardStartingPosX);
-            Debug.Log("angle: " + angle*Mathf.Rad2Deg);
-            Debug.Log("sin of angle: " + temp);
+            // Debug.Log("starting X: " + cardStartingPosX);
+            // Debug.Log("angle: " + angle*Mathf.Rad2Deg);
+            // Debug.Log("sin of angle: " + temp);
 
             float newY = Mathf.Sin(angle) * circleRadius + circleCenter;
             // Debug.Log("new X: " + cardStartingPosX + (float)(cardDimensions.x)/2);

@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray,out RaycastHit hitInfo)){
                 if(hitInfo.collider.gameObject.tag=="Card"){
-                    card = hitInfo.collider.gameObject.GetComponent<CardDisplay>().card;
-                    display = hitInfo.collider.gameObject.GetComponent<CardDisplay>();
+                    card = hitInfo.collider.gameObject.GetComponent<Card>().card;
+                    display = hitInfo.collider.gameObject.GetComponent<Card>();
                 }
                 if(hitInfo.collider.gameObject.tag=="Enemy"){
                     enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log(enemy.currHealth);
                     card.setRotLevel(card.getRotLevel()+1);
                     display.updateRotTexture();
-                    Debug.Log("Rot at level "+card.getRotLevel()+", attack now at "+card.getEffect(card.type));
+                    // Debug.Log("Rot at level "+card.getRotLevel()+", attack now at "+card.getEffect(card.type));
                     card = null;
                 }
             }
