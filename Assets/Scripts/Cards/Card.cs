@@ -103,11 +103,12 @@ public class Card : MonoBehaviour
                 break;
             default:
                 print("Attack "+card.type);
-                gm.Attack(card.getEffect(card.type));
+                gm.Attack(data.getEffect(data.type));
+                print("Damage: "+data.getEffect(data.type));
                 break;
         }
-        
-        card.setRotLevel(card.getRotLevel()+1);
+        data.setRotLevel(data.getRotLevel()+1);
+        print("New Rot: "+data.getRotLevel());
         updateRotTexture();
         
     }

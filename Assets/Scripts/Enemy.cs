@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         healthText.SetText(currHealth.ToString());
     }
 
-    public void DealDamage(int attack){
-        currHealth -= attack;
+    public void DealDamage(int damage){
+        currHealth -= damage;
     }
 }

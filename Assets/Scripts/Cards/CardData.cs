@@ -21,7 +21,9 @@ public class CardData : ScriptableObject
     private int getAttack(){
         // Debug.Log("Rot: "+rot);
         // Debug.Log("Rot modifier "+1/rot);
-        return attack;
+        double rotMod = 1/rot;
+        int modifiedAttack = (int)(attack*rotMod);
+        return modifiedAttack;
     }
     private int getDefense(){
         return defense;
