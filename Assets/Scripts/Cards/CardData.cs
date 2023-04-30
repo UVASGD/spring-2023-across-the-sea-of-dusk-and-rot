@@ -66,10 +66,18 @@ public class CardData : ScriptableObject
         return rot;
     }
     public void setRotLevel(int newRotLevel){
+        Debug.Log("Old Rot lvl: "+rot);
+        Debug.Log(newRotLevel);
         if(newRotLevel>5){
             newRotLevel = 5;
         }
-        rot = newRotLevel;
+        if(newRotLevel<=0){
+            rot = 1;
+        }
+        else{
+            rot = newRotLevel;            
+        }
+        Debug.Log("New Rot Lvl: "+rot);
     }
 
     public double getEffect(Type type){

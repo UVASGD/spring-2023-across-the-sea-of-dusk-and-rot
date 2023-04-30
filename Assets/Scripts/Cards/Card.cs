@@ -15,6 +15,7 @@ public class Card : MonoBehaviour
     private Vector3 scalechange;
     private Color ogColor;
     private Renderer meshRenderer;
+    private bool cleaned;
 
     //Rot Textures
     public Material rot1;
@@ -79,8 +80,8 @@ public class Card : MonoBehaviour
     public CardData GetCardData(){
         return transform.GetComponent<Card>().card;
     }
-    public void Initialize(){
-        //add properties
+    public void setCleaned(){
+        cleaned = true;
     }
     public void PlaySelectedCard(){
         PlayCard();
@@ -112,7 +113,10 @@ public class Card : MonoBehaviour
                 gm.Attack((int)data.getEffect(data.type), selectedCard.GetComponent<Card>());
                 break;
         }
-        data.setRotLevel((int)data.getRotLevel()+1);
+        if(!cleaned){
+            data.setRotLevel((int)data.getRotLevel()+1);
+        }
+        cleaned = false;
         updateRotTexture();
         
     }

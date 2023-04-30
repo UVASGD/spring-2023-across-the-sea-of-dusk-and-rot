@@ -128,12 +128,8 @@ public class GameManager : MonoBehaviour
     private void performClean(bool c, Card card){
         if(c){
             CardData data = card.GetCardData();
-            if(data.getRotLevel()<=cleanValue){
-                data.setRotLevel(1);
-            }
-            else{
-                data.setRotLevel((int)data.getRotLevel()-cleanValue);
-            }
+            card.setCleaned();
+            data.setRotLevel((int)data.getRotLevel()-cleanValue);
             cleanNext = false;
             cleanValue = 0;
         }

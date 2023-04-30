@@ -120,7 +120,7 @@ public class Hand : MonoBehaviour
             // Debug.Log("new Y: " + newY);
             // print(cardStartingPosX);
             // print(newY);
-            cards[i].GetComponent<Card>().SetInitialPosition(new Vector3(cardStartingPosX, newY, cards[i].transform.position.z));
+            cards[i].GetComponent<Card>().SetInitialPosition(new Vector3(cardStartingPosX, newY, transform.position.z));
             cards[i].GetComponent<Card>().SetRotation(new Vector3(0, 0, angle*Mathf.Rad2Deg - 90));
             cardStartingPosX += cardDimensions.x;
         }
