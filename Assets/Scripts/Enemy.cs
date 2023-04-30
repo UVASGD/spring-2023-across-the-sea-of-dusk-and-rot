@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public int currHealth;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI attackText;
     public int attack;
 
     // Start is called before the first frame update
@@ -17,11 +18,14 @@ public class Enemy : MonoBehaviour
     {
         currHealth = health;
         nameText.text = name;
-        healthText.text = currHealth.ToString();
+        healthText.text = "Health: "+currHealth.ToString();
+        attackText.text = "Attack: "+attack;
     }
 
     private void Update() {
-        healthText.SetText(currHealth.ToString());
+        healthText.SetText("Health: "+currHealth.ToString());
+        attackText.SetText("Attack: "+attack);
+        
     }
 
     public void DealDamage(int damage){

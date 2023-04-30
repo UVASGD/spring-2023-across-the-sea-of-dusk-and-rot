@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b7f355d8502ac5478a4f6d99c822332, type: 3}
-  m_Name: TestDefense
+  m_Name: ViciousInsults
   m_EditorClassIdentifier: 
-  name: Defense Card
-  description: Testing Defense
-  artwork: {fileID: 2800000, guid: 042349870ecf32342b0700c4e8170fca, type: 3}
-  attack: 0
-  defense: 10
+  name: Vicious Insults
+  description: Sticks and Stones...
+  artwork: {fileID: 2800000, guid: 11b261f062c2cf742acfc799ee13700f, type: 3}
+  attack: 10
+  defense: 0
   heal: 0
-  type: 1
+  type: 0
+  clean: 0
+  enhance: 0

@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b7f355d8502ac5478a4f6d99c822332, type: 3}
-  m_Name: TestHeal
+  m_Name: CthulusBlessing
   m_EditorClassIdentifier: 
-  name: Heal Card
-  description: Testing Heal
-  artwork: {fileID: 2800000, guid: 0399bea92be8d87408485c0140f25ee7, type: 3}
+  name: Cthulu's Blessing
+  description: Hail The Unknown Gods!
+  artwork: {fileID: 2800000, guid: 1f98f910323aa434c9c761aaebe63c99, type: 3}
   attack: 0
   defense: 0
-  heal: 10
-  type: 2
+  heal: 0
+  type: 3
+  clean: 0
+  enhance: 5
