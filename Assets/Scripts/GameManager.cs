@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
                 redealHand = true;
             }
         }
-        else{
+        else if(!playersTurn){
             player.AttackPlayer(enemy.attack);
             playersTurn = true;
         }
@@ -128,7 +128,12 @@ public class GameManager : MonoBehaviour
     private void performClean(bool c, Card card){
         if(c){
             CardData data = card.GetCardData();
-            data.setRotLevel((int)data.getRotLevel()-cleanValue);
+            if(data.getRotLevel()<=cleanValue){
+                data.setRotLevel(1);
+            }
+            else{
+                data.setRotLevel((int)data.getRotLevel()-cleanValue);
+            }
             cleanNext = false;
             cleanValue = 0;
         }

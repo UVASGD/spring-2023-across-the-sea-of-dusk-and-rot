@@ -120,10 +120,10 @@ public class Card : MonoBehaviour
     void Update()
     {
         if(card.type == Type.CLEAN){
-            effectText.text = "Cleans "+card.getEffect(card.type)+" Off Next Played Card";
+            effectText.text = "Cleans "+card.getEffect(card.type)+" Rot Off The Next Played Card";
         }
         else if(card.type == Type.ENHANCE){
-            effectText.text = "Modefies Next Card By "+card.getEffect(card.type)+"X";
+            effectText.text = "Modefies Next Card Effect By "+card.getEffect(card.type)+"X";
         }
         else{
             effectText.text = "This card does "+card.getEffect(card.type)+" "+card.type;
